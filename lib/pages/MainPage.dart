@@ -1,16 +1,11 @@
 import 'package:anaam/components/BottamBar.dart';
-import 'package:anaam/components/StoriesBox.dart';
-import 'package:anaam/components/appbars/HomeAppbar.dart';
-import 'package:anaam/components/appbars/ProfileAppbar.dart';
 import 'package:anaam/pages/ProfilePage.dart';
 import 'package:anaam/pages/SearchPage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import '../components/appbars/SearchAppbar.dart';
 import 'HomePage.dart';
-import 'Views/PostBox.dart';
-import 'VideoPage.dart';
+import 'NotificationPage.dart';
+import 'UploadPage/AddPostView.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -23,39 +18,45 @@ class _MainPageState extends State<MainPage> {
   int tabindex = 0;
 
   setTab(index) {
-    setState(() {
-      tabindex = index;
-      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        systemNavigationBarColor:
-            tabindex == 3 ? Colors.black : Colors.white, // navigation bar color
-        statusBarColor:
-            tabindex == 3 ? Colors.black : Colors.white, // status bar color
-      ));
-    });
+    if (index == 2) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const AddPostView(),
+        ),
+      );
+    } else {
+      setState(() {
+        tabindex = index;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     List<Widget> pages = [
-      HomePage(),
-      SearchPage(),
-      Placeholder(),
-      VideoApp(),
-      ProfilePage()
+      const HomePage(),
+      const SearchPage(),
+      const Placeholder(),
+      NotificationPage(),
+      ProfilePage(userId: FirebaseAuth.instance.currentUser!.uid)
     ];
-    List appbars = [
-      HomeAppbar(),
-      SearchAppbar(),
-      null,
-      HomeAppbar(isdark: tabindex == 3),
-      ProfileAppbar(),
-    ];
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: appbars[tabindex],
-      body: pages[tabindex],
-      bottomNavigationBar:
-          BottamBar(index: tabindex, setindex: setTab, isdark: tabindex == 3),
+
+    return WillPopScope(
+      onWillPop: () async {
+        if (tabindex != 0) {
+          setState(() {
+            tabindex = 0;
+          });
+          return false;
+        } else {
+          return true;
+        }
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: pages[tabindex],
+        bottomNavigationBar: BottamBar(index: tabindex, setindex: setTab),
+      ),
     );
   }
 }

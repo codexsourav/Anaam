@@ -1,7 +1,8 @@
-import 'package:anaam/components/StoriesBox.dart';
 import 'package:flutter/material.dart';
-
-import 'Views/PostBox.dart';
+import '../components/appbars/HomeAppbar.dart';
+import 'Messages/ChatPage.dart';
+import 'UploadPage/AddPostView.dart';
+import 'Views/PostFeed.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -10,14 +11,19 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            StoriesBox(),
-            PostBox(),
-          ],
+      appBar: HomeAppbar(
+        onCamaraPress: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const AddPostView(),
+          ),
+        ),
+        onChatPress: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => ChatPage(),
+          ),
         ),
       ),
+      body: PostFeed(),
     );
   }
 }

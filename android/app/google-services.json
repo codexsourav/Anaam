@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1020433224250",
+    "firebase_url": "https://anaam--app-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "anaam--app",
+    "storage_bucket": "anaam--app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020433224250:android:ac2c3c7f233e525ebcdb03",
+        "android_client_info": {
+          "package_name": "com.example.anaam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1020433224250-dpv1b9mugselat2osp3dlso7tmfihoca.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtdoKB_pjdS_t90OMjYlZQJ6WrkI4DxJU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1020433224250-dpv1b9mugselat2osp3dlso7tmfihoca.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

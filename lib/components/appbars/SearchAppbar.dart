@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
-PreferredSizeWidget SearchAppbar() {
+PreferredSizeWidget SearchAppbar({controller, onSearch}) {
   return AppBar(
     elevation: 0,
     backgroundColor: Colors.white,
+    surfaceTintColor: Colors.transparent,
     title: TextField(
-      decoration: new InputDecoration.collapsed(hintText: 'Search...'),
+      controller: controller,
+      decoration: const InputDecoration.collapsed(hintText: 'Search...'),
       cursorColor: Colors.black,
     ),
     actions: [
       IconButton(
-          onPressed: () {},
-          icon: Icon(
+          onPressed: onSearch,
+          icon: const Icon(
             Ionicons.search,
-            color: const Color.fromARGB(255, 80, 80, 80),
+            color: Color.fromARGB(255, 80, 80, 80),
           ))
     ],
   );

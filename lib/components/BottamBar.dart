@@ -16,7 +16,7 @@ class BottamBar extends StatelessWidget {
         unselectedIconTheme: IconThemeData(
             color: isdark
                 ? const Color.fromARGB(255, 139, 139, 139)
-                : Color.fromARGB(136, 0, 0, 0),
+                : const Color.fromARGB(136, 0, 0, 0),
             fill: 0.5),
         showUnselectedLabels: false,
         selectedIconTheme: IconThemeData(
@@ -26,7 +26,7 @@ class BottamBar extends StatelessWidget {
         onTap: (index) {
           setindex(index);
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(
               icon: Icon(Ionicons.home_outline), label: "Home"),
           BottomNavigationBarItem(
@@ -34,7 +34,8 @@ class BottamBar extends StatelessWidget {
           BottomNavigationBarItem(
               icon: Icon(Ionicons.add_circle_outline), label: "Add"),
           BottomNavigationBarItem(
-              icon: Icon(Ionicons.play_outline), label: "Reels"),
+              icon: Icon(Ionicons.notifications_outline),
+              label: "Notifications"),
           BottomNavigationBarItem(
               icon: Icon(Ionicons.person_circle_outline), label: "profile"),
         ]);
