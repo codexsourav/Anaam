@@ -1,4 +1,5 @@
 import 'package:anaam/model/UserModel.dart';
+import 'package:anaam/resources/sendNotify.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -49,6 +50,7 @@ class Autharize {
       if (!userInfo.user!.emailVerified) {
         await userInfo.user!.sendEmailVerification();
       }
+      await SendNotify().setDeviceToken();
       res = "login-true";
     } on FirebaseAuthException catch (e) {
       print(e);

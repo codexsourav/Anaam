@@ -1,5 +1,6 @@
 import 'package:anaam/components/appbars/HomeAppbar.dart';
 import 'package:anaam/model/setOnline.dart';
+import 'package:anaam/pages/Messages/MessagePage.dart';
 import 'package:anaam/utils/ImageLoder.dart';
 import 'package:anaam/utils/ShimmerLoading.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -86,6 +87,16 @@ class NotificationPage extends StatelessWidget {
                       }
                       var userData = usersnapshot.data!.data();
                       return ListTile(
+                        onTap: () {
+                          if (msgdata['ismsg'] == true) {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    MessagePage(userId: msgdata['uid']),
+                              ),
+                            );
+                          }
+                        },
                         leading: Container(
                           width: 35,
                           height: 35,
@@ -109,7 +120,7 @@ class NotificationPage extends StatelessWidget {
                           ),
                         ),
                         title: Text('@' + userData['uname']),
-                        subtitle: Text(msgdata['text'].toString()),
+                        subtitle: Text(msgdata['text'].toString(), maxLines: 1),
                         trailing: Text(msgdata['time'].toString()),
                       );
                     });

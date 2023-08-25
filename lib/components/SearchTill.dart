@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../model/setOnline.dart';
 import '../utils/ImageLoder.dart';
 
 class SearchTill extends StatefulWidget {
@@ -35,8 +36,17 @@ class _SearchTillState extends State<SearchTill> {
         builder: (context) => ProfilePage(userId: widget.userID),
       )),
       leading: Container(
-        width: 30,
-        height: 30,
+        width: 40,
+        height: 40,
+        padding: const EdgeInsets.all(2),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50),
+          border: Border.all(
+              color: chackOnline(onlineTime: widget.userInfo!['online'] ?? "0")
+                  ? const Color.fromARGB(255, 38, 168, 60)
+                  : const Color.fromARGB(255, 221, 221, 221),
+              width: 2),
+        ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(50),
           child: ImageLoder(imgurl: widget.userInfo['pic']),

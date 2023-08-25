@@ -5,10 +5,12 @@ import 'package:anaam/pages/Views/Auth/ForgetPassPage.dart';
 import 'package:anaam/pages/Views/Auth/SignupPage.dart';
 import 'package:anaam/resources/autharize.dart';
 import 'package:anaam/utils/validate.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/snackbar.dart';
 import '../../../model/setOnline.dart';
+import '../../Messages/MessagePage.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
@@ -62,6 +64,15 @@ class _LoginPageState extends State<LoginPage> {
             text: "Sumthing Want Wrong!",
             color: const Color.fromARGB(255, 207, 68, 58));
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseMessaging.onMessageOpenedApp.listen((msg) {
+      print(msg.data);
+      print(msg.notification);
+    });
   }
 
   @override

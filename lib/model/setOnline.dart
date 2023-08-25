@@ -6,12 +6,24 @@ setOnline() async {
   final fbDB = FirebaseFirestore.instance;
   if (FirebaseAuth.instance.currentUser != null) {
     int now = DateTime.now().millisecondsSinceEpoch;
-
     await fbDB
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .update({
-      "online": (now + 50000).toString(),
+      "online": (now + 30000).toString(),
+    });
+  }
+}
+
+setOffline() async {
+  final fbDB = FirebaseFirestore.instance;
+  if (FirebaseAuth.instance.currentUser != null) {
+    int now = DateTime.now().millisecondsSinceEpoch;
+    await fbDB
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .update({
+      "online": "0",
     });
   }
 }

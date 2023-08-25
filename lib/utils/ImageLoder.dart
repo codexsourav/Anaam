@@ -9,7 +9,7 @@ Widget ImageLoder({
   double? imgHeight,
   double loderWidget = 300,
   double loderHeight = 300,
-  BoxFit? fit,
+  BoxFit fit = BoxFit.cover,
 }) {
   return CachedNetworkImage(
     fit: fit,

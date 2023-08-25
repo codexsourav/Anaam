@@ -183,16 +183,36 @@ class _PostState extends State<Post> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    userData['uname'] ?? "",
-                                    maxLines: 1,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      overflow: TextOverflow.clip,
-                                    ),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        userData['name'] ?? "",
+                                        maxLines: 1,
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          overflow: TextOverflow.clip,
+                                        ),
+                                      ),
+                                      SizedBox(height: 3),
+                                      Text(
+                                        "@${userData['uname']}" ?? "",
+                                        maxLines: 1,
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400,
+                                          overflow: TextOverflow.clip,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],

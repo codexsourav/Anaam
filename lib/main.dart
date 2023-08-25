@@ -1,6 +1,7 @@
-import 'dart:async';
 import 'package:anaam/pages/MainPage.dart';
 import 'package:anaam/pages/Views/Auth/LoginPage.dart';
+import 'package:anaam/resources/sendNotify.dart';
+import 'package:anaam/utils/FbNotifications.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -13,21 +14,36 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  Timer.periodic(const Duration(seconds: 50), (time) async {
-    await setOnline();
-  });
+
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     systemNavigationBarColor: Colors.white, // navigation bar color
     statusBarColor: Colors.white, // status bar color
   ));
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  InitNotic() async {
+    await FbNotifications().InitDb();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    InitNotic();
+  }
+
   @override
   Widget build(BuildContext context) {
     setOnline();
+    SendNotify().setDeviceToken();
     return MaterialApp(
       title: "Anaam",
       debugShowCheckedModeBanner: false,

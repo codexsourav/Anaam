@@ -242,13 +242,14 @@ class _MessagePageState extends State<MessagePage> {
                   FloatingActionButton(
                     onPressed: () async {
                       if (_textEditingController.text.isNotEmpty) {
+                        String text = _textEditingController.text;
+                        _textEditingController.clear();
                         await managechat.sendNewMessage(
                           issend: true,
                           resever: widget.userId,
-                          text: _textEditingController.text,
+                          text: text,
                           sender: myid,
                         );
-                        _textEditingController.clear();
                       }
                     },
                     backgroundColor: Colors.black,

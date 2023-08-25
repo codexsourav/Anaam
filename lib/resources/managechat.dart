@@ -1,3 +1,4 @@
+import 'package:anaam/resources/sendNotify.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ManageChat {
@@ -10,6 +11,14 @@ class ManageChat {
         sender: resever, resever: sender, text: text, issend: !issend);
     await _setLastMessage(sender: sender, resever: resever, text: text);
     await _setLastMessage(sender: resever, resever: sender, text: text);
+    await SendNotify().notifyMe(
+      ismsg: true,
+      noticData: {'id': resever.toString(), "type": "chat"},
+      sendId: resever,
+      uid: sender,
+      text: "Send Message - $text",
+      type: "chat",
+    );
   }
 
   Future _sendMessage({sender, resever, text, issend}) async {

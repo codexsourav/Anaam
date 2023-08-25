@@ -33,6 +33,7 @@ class _UserProfileState extends State<UserProfile> {
           if (snapshot.hasData) {
             var userData = snapshot.data!.data();
             bool isFolllow = userData!['follower'].contains(myid);
+
             return Scaffold(
               backgroundColor: Colors.white,
               appBar: AppBar(
@@ -65,6 +66,7 @@ class _UserProfileState extends State<UserProfile> {
                                     EditProfilePage(userData: userData),
                               ));
                             } else if (value == 'logout') {
+                              await setOffline();
                               await FirebaseAuth.instance.signOut();
                               Navigator.of(context)
                                   .pushReplacement(MaterialPageRoute(
